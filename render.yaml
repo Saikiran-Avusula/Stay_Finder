@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: stayfinder-backend
+    name: stayFinder-backend
     runtime: docker
     rootDir: stayFinder-backend
     plan: free
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    dockerfilePath: stayFinder-backend/Dockerfile
+    dockerContext: stayFinder-backend
     healthCheckPath: /api/hotels/search
     envVars:
       - key: PORT
