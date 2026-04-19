@@ -2,7 +2,6 @@ services:
   - type: web
     name: stayFinder-backend
     runtime: docker
-    rootDir: stayFinder-backend
     plan: free
     dockerfilePath: stayFinder-backend/Dockerfile
     dockerContext: stayFinder-backend
