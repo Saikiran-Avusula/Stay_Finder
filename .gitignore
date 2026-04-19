@@ -1,0 +1,10 @@
+stayFinder-frontend/node_modules/
+stayFinder-frontend/dist/
+stayFinder-frontend/.vercel/
+stayFinder-frontend/.vite/
+
+stayFinder-backend/target/
+stayFinder-backend/.idea/
+stayFinder-backend/.smarttomcat/
+
+*.log
