@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: stayfinder-backend
+    runtime: java
+    rootDir: stayFinder-backend
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/stayfinder-backend-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /api/hotels/search
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.postgresql.Driver
+      - key: SPRING_JPA_HIBERNATE_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_SHOW_SQL
+        value: false
+      - key: APP_JWT_EXPIRATION
+        value: 86400000
+      - key: APP_CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: APP_JWT_SECRET
+        sync: false
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
