@@ -1,11 +1,11 @@
 services:
   - type: web
     name: stayfinder-backend
-    runtime: java
+    runtime: docker
     rootDir: stayFinder-backend
     plan: free
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/stayfinder-backend-0.0.1-SNAPSHOT.jar
+    dockerfilePath: ./stayFinder-backend/Dockerfile
+    dockerContext: ./stayFinder-backend
     healthCheckPath: /api/hotels/search
     envVars:
       - key: PORT

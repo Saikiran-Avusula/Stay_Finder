@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createBooking, getHotel } from '../services/api'
+import { createBooking, getApiErrorMessage, getHotel } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 
 export default function HotelDetail() {
@@ -53,7 +53,7 @@ export default function HotelDetail() {
       setBookingMsg('Booking confirmed. Check My Bookings.')
       setBooking({ checkIn: '', checkOut: '' })
     } catch (err) {
-      setBookingMsg(err.response?.data?.error || 'Booking failed')
+      setBookingMsg(getApiErrorMessage(err, 'Booking failed'))
     } finally {
       setBookingLoading(false)
     }
