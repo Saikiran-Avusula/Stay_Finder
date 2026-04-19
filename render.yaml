@@ -4,8 +4,8 @@ services:
     runtime: docker
     rootDir: stayFinder-backend
     plan: free
-    dockerfilePath: ./stayFinder-backend/Dockerfile
-    dockerContext: ./stayFinder-backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /api/hotels/search
     envVars:
       - key: PORT
