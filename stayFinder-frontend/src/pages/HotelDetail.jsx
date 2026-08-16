@@ -63,8 +63,8 @@ export default function HotelDetail() {
   if (!hotel) return <div className="text-center py-20 text-gray-400">Hotel not found</div>
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <div className="rounded-3xl overflow-hidden h-80 mb-8">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mb-8 h-80 overflow-hidden rounded-lg border border-stone-200 bg-stone-100 shadow-sm">
         <img
           src={hotel.imageUrl || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800'}
           alt={hotel.name}
@@ -72,30 +72,30 @@ export default function HotelDetail() {
         />
       </div>
 
-      <div className="flex gap-8">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_340px]">
         <div className="flex-1">
-          <div className="flex items-start justify-between mb-2">
-            <h1 className="font-display text-4xl font-bold">{hotel.name}</h1>
-            <span className="bg-yellow-50 text-yellow-600 font-semibold px-3 py-1 rounded-full text-sm">
-              ⭐ {hotel.rating}
+          <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <h1 className="font-display text-4xl font-bold text-dark">{hotel.name}</h1>
+            <span className="self-start rounded-full bg-amber-50 px-3 py-1 text-sm font-bold text-amber-700">
+              {hotel.rating} rating
             </span>
           </div>
-          <p className="text-gray-500 mb-6">📍 {hotel.location}</p>
-          <p className="text-gray-600 leading-relaxed mb-8">{hotel.description}</p>
+          <p className="mb-6 text-sm font-semibold text-gray-500">{hotel.location}</p>
+          <p className="mb-8 leading-8 text-gray-600">{hotel.description}</p>
 
           <h3 className="font-semibold text-dark mb-3">Amenities</h3>
           <div className="flex flex-wrap gap-2 mb-8">
             {hotel.amenities?.map((a, i) => (
-              <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm">✓ {a}</span>
+              <span key={i} className="rounded-full bg-stone-100 px-3 py-1.5 text-sm font-medium text-gray-700">{a}</span>
             ))}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-4 text-center">
+            <div className="rounded-lg border border-stone-200 bg-white p-4 text-center">
               <p className="text-2xl font-bold text-dark">{hotel.totalRooms}</p>
               <p className="text-gray-400 text-sm">Total Rooms</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 text-center">
+            <div className="rounded-lg border border-stone-200 bg-white p-4 text-center">
               <p className={`text-2xl font-bold ${hotel.availableRooms > 0 ? 'text-green-500' : 'text-red-400'}`}>
                 {hotel.availableRooms}
               </p>
@@ -104,9 +104,9 @@ export default function HotelDetail() {
           </div>
         </div>
 
-        <div className="w-80 shrink-0">
-          <div className="bg-white rounded-3xl p-6 shadow-sm sticky top-24">
-            <p className="text-3xl font-bold text-dark mb-1">₹{hotel.pricePerNight?.toLocaleString()}</p>
+        <div>
+          <div className="sticky top-24 rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
+            <p className="mb-1 text-3xl font-bold text-dark">Rs. {hotel.pricePerNight?.toLocaleString()}</p>
             <p className="text-gray-400 text-sm mb-6">per night</p>
 
             <form onSubmit={handleBook} className="space-y-4">
@@ -118,7 +118,7 @@ export default function HotelDetail() {
                   value={booking.checkIn}
                   min={minCheckInDate}
                   onChange={e => setBooking({ ...booking, checkIn: e.target.value })}
-                  className="w-full mt-1 border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-lg border border-stone-200 px-3 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
                 />
               </div>
               <div>
@@ -129,18 +129,18 @@ export default function HotelDetail() {
                   value={booking.checkOut}
                   min={booking.checkIn || minCheckInDate}
                   onChange={e => setBooking({ ...booking, checkOut: e.target.value })}
-                  className="w-full mt-1 border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-lg border border-stone-200 px-3 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
                 />
               </div>
 
               {bookingMsg && (
-                <p className="text-sm text-center py-2 px-3 bg-gray-50 rounded-xl">{bookingMsg}</p>
+                <p className="rounded-lg bg-stone-50 px-3 py-2 text-center text-sm">{bookingMsg}</p>
               )}
 
               <button
                 type="submit"
                 disabled={bookingLoading || hotel.availableRooms === 0}
-                className="w-full bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-lg bg-primary py-3 font-bold text-white transition-colors hover:bg-teal-800 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {bookingLoading ? 'Booking...' : hotel.availableRooms === 0 ? 'Fully Booked' : 'Book Now'}
               </button>

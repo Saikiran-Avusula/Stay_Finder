@@ -26,62 +26,72 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-6">
-      <div className="bg-white rounded-3xl p-10 shadow-sm w-full max-w-md">
-        <h1 className="font-display text-3xl font-bold mb-2">Create account</h1>
-        <p className="text-gray-400 text-sm mb-8">Join StayFinder today</p>
+    <main className="mx-auto grid min-h-[calc(100vh-73px)] max-w-6xl grid-cols-1 items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_460px]">
+      <section className="hidden lg:block">
+        <p className="text-sm font-bold uppercase tracking-[0.16em] text-primary">Create your account</p>
+        <h1 className="mt-3 font-display text-5xl font-bold leading-tight text-dark">
+          Book faster when the right hotel appears.
+        </h1>
+        <p className="mt-5 max-w-xl text-lg leading-8 text-gray-600">
+          Save your session, make reservations, and keep every booking in one place.
+        </p>
+      </section>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <section className="rounded-lg border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="font-display text-3xl font-bold text-dark">Sign up</h2>
+        <p className="mt-2 text-sm text-gray-500">Create a StayFinder account to start booking.</p>
+
+        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div>
-            <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">Full Name</label>
+            <label className="text-sm font-bold text-dark">Full name</label>
             <input
               type="text"
               required
               value={form.name}
               onChange={e => setForm({ ...form, name: e.target.value })}
-              className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary"
+              className="mt-2 w-full rounded-lg border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               placeholder="John Doe"
             />
           </div>
           <div>
-            <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">Email</label>
+            <label className="text-sm font-bold text-dark">Email</label>
             <input
               type="email"
               required
               value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}
-              className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary"
+              className="mt-2 w-full rounded-lg border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">Password</label>
+            <label className="text-sm font-bold text-dark">Password</label>
             <input
               type="password"
               required
               value={form.password}
               onChange={e => setForm({ ...form, password: e.target.value })}
-              className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary"
-              placeholder="••••••••"
+              className="mt-2 w-full rounded-lg border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
+              placeholder="Choose a password"
             />
           </div>
 
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {error && <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-600">{error}</p>}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-white transition-colors hover:bg-teal-800 disabled:opacity-60"
           >
-            {loading ? 'Creating account...' : 'Sign Up'}
+            {loading ? 'Creating account...' : 'Create account'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-400 mt-6">
+        <p className="mt-6 text-center text-sm text-gray-500">
           Already have an account?{' '}
-          <Link to="/login" className="text-primary font-medium hover:underline">Login</Link>
+          <Link to="/login" className="font-bold text-primary hover:underline">Login</Link>
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }

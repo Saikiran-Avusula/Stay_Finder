@@ -18,36 +18,42 @@ export default function HotelCard({ hotel }) {
       }}
       role="button"
       tabIndex={0}
-      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer text-left"
+      className="group overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
     >
-      <div className="relative overflow-hidden h-48">
+      <div className="relative h-52 overflow-hidden bg-stone-100">
         <img
           src={hotel.imageUrl || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800'}
           alt={hotel.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
-        <div className="absolute top-3 right-3 bg-white rounded-full px-2 py-1 text-xs font-semibold flex items-center gap-1">
-          ⭐ {hotel.rating}
+        <div className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-dark shadow-sm">
+          {hotel.rating?.toFixed ? hotel.rating.toFixed(1) : hotel.rating} rating
         </div>
       </div>
 
-      <div className="p-4">
-        <h3 className="font-semibold text-dark text-lg leading-tight">{hotel.name}</h3>
-        <p className="text-gray-500 text-sm mt-1">📍 {hotel.location}</p>
+      <div className="p-5">
+        <div className="min-h-16">
+          <h3 className="text-lg font-bold leading-tight text-dark">{hotel.name}</h3>
+          <p className="mt-1 text-sm font-medium text-gray-500">{hotel.location}</p>
+        </div>
 
-        <div className="flex flex-wrap gap-1 mt-3">
-          {hotel.amenities?.slice(0, 3).map((a, i) => (
-            <span key={i} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">{a}</span>
+        <div className="mt-4 flex min-h-14 flex-wrap gap-2">
+          {hotel.amenities?.slice(0, 3).map((amenity) => (
+            <span key={amenity} className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+              {amenity}
+            </span>
           ))}
           {hotel.amenities?.length > 3 && (
-            <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">+{hotel.amenities.length - 3}</span>
+            <span className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+              +{hotel.amenities.length - 3} more
+            </span>
           )}
         </div>
 
-        <div className="flex items-center justify-between mt-4">
+        <div className="mt-5 flex items-end justify-between gap-3">
           <div>
-            <span className="text-2xl font-bold text-dark">₹{hotel.pricePerNight?.toLocaleString()}</span>
-            <span className="text-gray-400 text-sm"> / night</span>
+            <p className="text-2xl font-bold text-dark">Rs. {hotel.pricePerNight?.toLocaleString()}</p>
+            <p className="text-xs font-medium text-gray-500">per night</p>
           </div>
           <button
             type="button"
@@ -55,17 +61,14 @@ export default function HotelCard({ hotel }) {
               e.stopPropagation()
               openHotel()
             }}
-            className="bg-blue-700 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition-colors"
+            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
           >
             View
           </button>
         </div>
 
-        <p className="text-xs text-gray-400 mt-2">
-          {hotel.availableRooms > 0
-            ? `${hotel.availableRooms} rooms available`
-            : <span className="text-red-400">Fully booked</span>
-          }
+        <p className={`mt-3 text-xs font-semibold ${hotel.availableRooms > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
+          {hotel.availableRooms > 0 ? `${hotel.availableRooms} rooms available` : 'Fully booked'}
         </p>
       </div>
     </article>

@@ -26,55 +26,66 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-6">
-      <div className="bg-white rounded-3xl p-10 shadow-sm w-full max-w-md">
-        <h1 className="font-display text-3xl font-bold mb-2">Welcome back</h1>
-        <p className="text-gray-400 text-sm mb-8">Login to your StayFinder account</p>
+    <main className="mx-auto grid min-h-[calc(100vh-73px)] max-w-6xl grid-cols-1 items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_440px]">
+      <section className="hidden lg:block">
+        <p className="text-sm font-bold uppercase tracking-[0.16em] text-primary">Welcome back</p>
+        <h1 className="mt-3 font-display text-5xl font-bold leading-tight text-dark">
+          Manage your stays from one clean dashboard.
+        </h1>
+        <p className="mt-5 max-w-xl text-lg leading-8 text-gray-600">
+          Sign in to book rooms, review upcoming trips, and manage cancellations without calling the hotel desk.
+        </p>
+      </section>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <section className="rounded-lg border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="font-display text-3xl font-bold text-dark">Login</h2>
+        <p className="mt-2 text-sm text-gray-500">Use your StayFinder account details.</p>
+
+        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div>
-            <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">Email</label>
+            <label className="text-sm font-bold text-dark">Email</label>
             <input
               type="email"
               required
               value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}
-              className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary"
+              className="mt-2 w-full rounded-lg border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">Password</label>
+            <label className="text-sm font-bold text-dark">Password</label>
             <input
               type="password"
               required
               value={form.password}
               onChange={e => setForm({ ...form, password: e.target.value })}
-              className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary"
-              placeholder="••••••••"
+              className="mt-2 w-full rounded-lg border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
+              placeholder="Enter your password"
             />
           </div>
 
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {error && <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-600">{error}</p>}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-white transition-colors hover:bg-teal-800 disabled:opacity-60"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-400 mt-6">
+        <p className="mt-6 text-center text-sm text-gray-500">
           No account?{' '}
-          <Link to="/register" className="text-primary font-medium hover:underline">Sign up</Link>
+          <Link to="/register" className="font-bold text-primary hover:underline">Sign up</Link>
         </p>
 
-        <div className="mt-4 p-3 bg-gray-50 rounded-xl text-xs text-gray-400 text-center">
-          Admin: admin@stayfinder.com / admin123
+        <div className="mt-5 rounded-lg bg-stone-50 p-4 text-sm text-gray-600">
+          <p className="font-bold text-dark">Demo admin</p>
+          <p>admin@stayfinder.com / admin123</p>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }

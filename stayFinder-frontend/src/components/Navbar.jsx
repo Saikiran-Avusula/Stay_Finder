@@ -6,8 +6,8 @@ export default function Navbar() {
   const navigate = useNavigate()
 
   const navLinkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors ${
-      isActive ? 'text-dark' : 'text-gray-600 hover:text-dark'
+    `rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
+      isActive ? 'bg-teal-50 text-primary' : 'text-gray-600 hover:bg-gray-100 hover:text-dark'
     }`
 
   const handleLogout = () => {
@@ -16,13 +16,16 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="font-display text-2xl font-bold text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 rounded-lg">
+    <nav className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Link
+          to="/"
+          className="font-display text-2xl font-bold text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+        >
           Stay<span className="text-primary">Finder</span>
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-3">
           <NavLink to="/search" className={navLinkClass}>
             Explore
           </NavLink>
@@ -37,26 +40,27 @@ export default function Navbar() {
                   Admin
                 </NavLink>
               )}
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-500">{user.name}</span>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="bg-red-400 text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400/70 focus-visible:ring-offset-2"
-                >
-                  Logout
-                </button>
-              </div>
+              <span className="hidden max-w-32 truncate text-sm text-gray-500 sm:inline">{user.name}</span>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+              >
+                Logout
+              </button>
             </>
           ) : (
-            <div className="flex items-center gap-3">
+            <>
               <NavLink to="/login" className={navLinkClass}>
                 Login
               </NavLink>
-              <Link to="/register" className="bg-blue-700 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2">
+              <Link
+                to="/register"
+                className="rounded-full bg-dark px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+              >
                 Sign Up
               </Link>
-            </div>
+            </>
           )}
         </div>
       </div>

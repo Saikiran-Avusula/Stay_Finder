@@ -6,5 +6,6 @@ stayFinder-frontend/.vite/
 stayFinder-backend/target/
 stayFinder-backend/.idea/
 stayFinder-backend/.smarttomcat/
+stayFinder-backend/data/
 
 *.log

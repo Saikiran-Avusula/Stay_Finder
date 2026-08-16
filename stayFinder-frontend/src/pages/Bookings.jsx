@@ -41,8 +41,7 @@ export default function Bookings() {
 
       {bookings.length === 0 ? (
         <div className="text-center py-20 text-gray-400">
-          <p className="text-5xl mb-4">📋</p>
-          <p className="text-lg">No bookings yet</p>
+          <p className="text-lg font-semibold text-dark">No bookings yet</p>
           <button onClick={() => navigate('/search')} className="mt-4 bg-primary text-white px-6 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
             Browse Hotels
           </button>
@@ -60,15 +59,15 @@ export default function Bookings() {
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-semibold text-dark text-lg">{b.hotelName}</h3>
-                    <p className="text-gray-400 text-sm">📍 {b.hotelLocation}</p>
+                    <p className="text-gray-400 text-sm">{b.hotelLocation}</p>
                   </div>
                   <span className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[b.status]}`}>
                     {b.status}
                   </span>
                 </div>
                 <div className="flex gap-6 mt-3 text-sm text-gray-500">
-                  <span>📅 {b.checkIn} → {b.checkOut}</span>
-                  <span className="font-semibold text-dark">₹{b.totalPrice?.toLocaleString()}</span>
+                  <span>{b.checkIn} to {b.checkOut}</span>
+                  <span className="font-semibold text-dark">Rs. {b.totalPrice?.toLocaleString()}</span>
                 </div>
               </div>
               {b.status !== 'CANCELLED' && (

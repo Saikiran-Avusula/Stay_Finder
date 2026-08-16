@@ -71,8 +71,8 @@ public class DataSeeder implements CommandLineRunner {
 
             buildHotel("Metro Stay Mumbai", "Mumbai",
                 "Modern business hotel located near BKC with easy access to major corporate hubs.",
-                "2800.00", 4.2, 200, 90,
-                "https://images.unsplash.com/photo-1551882547-ff40c4fe1fa7?w=800",
+               
+                "https://unsplash.com/@3dottawa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
                 "Free Wi-Fi", "Business Centre", "Gym", "Restaurant", "Parking"),
 
             buildHotel("Heritage Palace Jaipur", "Jaipur",
