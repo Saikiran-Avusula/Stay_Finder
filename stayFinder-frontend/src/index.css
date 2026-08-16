@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
-/* @theme {
+@theme {
   --color-primary: #0066ff;
   --color-dark: #0a0a0a;
   --font-sans: "DM Sans", sans-serif;
   --font-display: "Playfair Display", serif;
-} */
+}
 
 html {
   font-family: var(--font-sans);
@@ -15,4 +15,14 @@ html {
 body {
   background-color: #f8fafc;
   color: #0f172a;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(0, 102, 255, 0.2);
 }

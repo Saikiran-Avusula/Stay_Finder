@@ -32,17 +32,17 @@ export default function Home() {
             Search hotels across India. Filter by price, rating, and amenities.
           </p>
 
-          <form onSubmit={handleSearch} className="flex gap-3 max-w-xl mx-auto">
+          <form onSubmit={handleSearch} className="flex max-w-xl mx-auto gap-3">
             <input
               type="text"
               placeholder="Where do you want to go?"
               value={location}
               onChange={e => setLocation(e.target.value)}
-              className="flex-1 px-5 py-4 rounded-2xl text-dark text-sm outline-none"
+              className="flex-1 px-5 py-4 rounded-2xl text-dark text-sm outline-none ring-0 focus:ring-2 focus:ring-primary/30"
             />
             <button
               type="submit"
-              className="bg-primary px-6 py-4 rounded-2xl text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap"
+              className="bg-primary px-6 py-4 rounded-2xl text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
             >
               Search
             </button>
@@ -55,19 +55,21 @@ export default function Home() {
         <h2 className="font-display text-3xl font-bold mb-8">Popular Destinations</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {destinations.map(d => (
-            <div
+            <button
               key={d.name}
+              type="button"
               onClick={() => navigate(`/search?location=${d.name}`)}
-              className="relative rounded-2xl overflow-hidden h-40 cursor-pointer group"
+              className="relative rounded-2xl overflow-hidden h-40 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
+              aria-label={`Explore ${d.name}`}
             >
-              <img src={d.img} alt={d.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-black/40 flex items-end p-4">
+              <img src={d.img} alt={d.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/40 flex items-end p-4 transition-opacity duration-300 group-hover:bg-black/50">
                 <div>
                   <span className="text-xl">{d.emoji}</span>
                   <p className="text-white font-semibold text-lg">{d.name}</p>
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
