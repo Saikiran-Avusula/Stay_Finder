@@ -7,6 +7,8 @@ export default function HotelCard({ hotel }) {
     : typeof hotel.amenities === 'string'
       ? [hotel.amenities]
       : []
+  const visibleAmenities = amenities.length > 3 ? amenities.slice(0, 2) : amenities
+  const hiddenAmenityCount = amenities.length - visibleAmenities.length
 
   const openHotel = () => {
     navigate(`/hotels/${hotel.id}`)
@@ -42,15 +44,15 @@ export default function HotelCard({ hotel }) {
           <p className="mt-1 text-sm font-medium text-gray-500">{hotel.location}</p>
         </div>
 
-        <div className="mt-4 flex min-h-14 flex-wrap gap-2">
-          {amenities.slice(0, 3).map((amenity, index) => (
-            <span key={`${amenity}-${index}`} className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+        <div className="mt-4 flex h-8 min-w-0 flex-nowrap items-center gap-2 overflow-hidden">
+          {visibleAmenities.map((amenity, index) => (
+            <span key={`${amenity}-${index}`} title={amenity} className="min-w-0 truncate rounded-full bg-stone-100 px-2 py-1 text-xs font-medium text-gray-600">
               {amenity}
             </span>
           ))}
-          {amenities.length > 3 && (
-            <span className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
-              +{amenities.length - 3} more
+          {hiddenAmenityCount > 0 && (
+            <span className="shrink-0 whitespace-nowrap rounded-full bg-stone-100 px-2 py-1 text-xs font-medium text-gray-600">
+              +{hiddenAmenityCount} more
             </span>
           )}
         </div>
