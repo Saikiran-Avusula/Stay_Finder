@@ -1,10 +1,12 @@
+# @format
+
 services:
   - type: web
     name: stayFinder-backend
     runtime: docker
     plan: free
-    dockerfilePath: stayFinder-backend/Dockerfile
-    dockerContext: stayFinder-backend
+    dockerfilePath: stayfinder-backend/Dockerfile
+    dockerContext: stayfinder-backend
     healthCheckPath: /api/hotels/search
     envVars:
       - key: PORT
