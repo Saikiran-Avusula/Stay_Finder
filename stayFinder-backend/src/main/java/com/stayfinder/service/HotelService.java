@@ -32,7 +32,7 @@ public class HotelService {
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
 
         return hotelRepository.searchHotels(
-                request.getLocation(),
+            request.getLocation() == null ? "" : request.getLocation(),
                 request.getMinPrice(),
                 request.getMaxPrice(),
                 request.getMinRating(),

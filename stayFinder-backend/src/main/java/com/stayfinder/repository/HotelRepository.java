@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     @Query("SELECT h FROM Hotel h WHERE " +
-           "(:location IS NULL OR LOWER(h.location) LIKE LOWER(CONCAT('%', :location, '%'))) AND " +
+            "LOWER(h.location) LIKE LOWER(CONCAT('%', :location, '%')) AND " +
            "(:minPrice IS NULL OR h.pricePerNight >= :minPrice) AND " +
            "(:maxPrice IS NULL OR h.pricePerNight <= :maxPrice) AND " +
            "(:minRating IS NULL OR h.rating >= :minRating) AND " +
