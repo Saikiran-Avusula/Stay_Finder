@@ -2,6 +2,11 @@ import { useNavigate } from 'react-router-dom'
 
 export default function HotelCard({ hotel }) {
   const navigate = useNavigate()
+  const amenities = Array.isArray(hotel.amenities)
+    ? hotel.amenities.map(amenity => typeof amenity === 'string' ? amenity : amenity?.name).filter(Boolean)
+    : typeof hotel.amenities === 'string'
+      ? [hotel.amenities]
+      : []
 
   const openHotel = () => {
     navigate(`/hotels/${hotel.id}`)
@@ -38,14 +43,14 @@ export default function HotelCard({ hotel }) {
         </div>
 
         <div className="mt-4 flex min-h-14 flex-wrap gap-2">
-          {hotel.amenities?.slice(0, 3).map((amenity) => (
-            <span key={amenity} className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+          {amenities.slice(0, 3).map((amenity, index) => (
+            <span key={`${amenity}-${index}`} className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
               {amenity}
             </span>
           ))}
-          {hotel.amenities?.length > 3 && (
+          {amenities.length > 3 && (
             <span className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-gray-600">
-              +{hotel.amenities.length - 3} more
+              +{amenities.length - 3} more
             </span>
           )}
         </div>
